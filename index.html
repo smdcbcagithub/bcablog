@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Members - Shree Medha Degree College</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F3E8DF 0%, #E8D1C5 100%);
+            color: #452829;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(69, 40, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(69, 40, 41, 0.3);
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #F3E8DF;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #E8D1C5;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #E8D1C5, #F3E8DF);
+            color: #452829;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(232, 209, 197, 0.3);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 209, 197, 0.5);
+            background: linear-gradient(135deg, #F3E8DF, #E8D1C5);
+        }
+
+        .nav-button:active {
+            transform: translateY(0);
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #452829 0%, #57595B 100%);
+            color: #F3E8DF;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(69, 40, 41, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(243, 232, 223, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 0.8s ease;
+}
+
+.header-logo {
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 1.5rem;
+}
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Faculty Grid */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Faculty Card */
+        .faculty-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(69, 40, 41, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .faculty-card:nth-child(1) { animation-delay: 0.1s; }
+        .faculty-card:nth-child(2) { animation-delay: 0.2s; }
+        .faculty-card:nth-child(3) { animation-delay: 0.3s; }
+        .faculty-card:nth-child(4) { animation-delay: 0.4s; }
+        .faculty-card:nth-child(5) { animation-delay: 0.5s; }
+        .faculty-card:nth-child(6) { animation-delay: 0.6s; }
+        .faculty-card:nth-child(7) { animation-delay: 0.7s; }
+        .faculty-card:nth-child(8) { animation-delay: 0.8s; }
+        .faculty-card:nth-child(9) { animation-delay: 0.9s; }
+        .faculty-card:nth-child(10) { animation-delay: 1s; }
+        .faculty-card:nth-child(11) { animation-delay: 1.1s; }
+        .faculty-card:nth-child(12) { animation-delay: 1.2s; }
+        .faculty-card:nth-child(13) { animation-delay: 1.3s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(69, 40, 41, 0.25);
+        }
+
+        .faculty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #452829, #57595B);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            z-index: 10;
+        }
+
+        .faculty-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Image Container - 75% height */
+        .image-container {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #E8D1C5 0%, #F3E8DF 100%);
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.6s ease;
+        }
+
+        .faculty-card:hover .image-container img {
+            transform: scale(1.08);
+        }
+
+        /* Faculty Info - 25% height */
+        .faculty-info {
+            padding: 1.5rem;
+            min-height: 180px;
+        }
+        
+        #page-loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+#page-loader.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loader-card {
+    background: #ffffff;
+    width: 320px;          /* increase width */
+    min-height: 260px;     /* increase height */
+    padding: 3rem 3rem;    /* inner spacing */
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.loader-card img {
+    margin-bottom: 1.2rem;   /* space below logo */
+    width: 70px;
+    height: 40px;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loader-card p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #452829;
+}
+
+
+        .faculty-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #452829;
+            margin-bottom: 0.5rem;
+        }
+
+        .faculty-role {
+            font-size: 0.9rem;
+            color: #57595B;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: #F3E8DF;
+            border-radius: 20px;
+        }
+
+        .faculty-details {
+            margin-top: 1rem;
+            line-height: 1.8;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #57595B;
+        }
+
+        .detail-item strong {
+            color: #452829;
+            margin-right: 0.5rem;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .email-link {
+            color: #452829;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            word-break: break-word;
+        }
+
+        .email-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #452829;
+            transition: width 0.3s ease;
+        }
+
+        .email-link:hover::after {
+            width: 100%;
+        }
+
+        .email-link:hover {
+            color: #57595B;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #452829, #57595B);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(69, 40, 41, 0.3);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 1.5rem;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .scroll-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(69, 40, 41, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .nav-button {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .header-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .faculty-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .image-container {
+                height: 350px;
+            }
+
+            .faculty-info {
+                min-height: 150px;
+            }
+        }
+        
+        /* ================================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* ---------- Large Desktops (1440px+) ---------- */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .image-container {
+        height: 520px;
+    }
+}
+
+/* ---------- Laptops & Small Desktops ---------- */
+@media (max-width: 1200px) {
+    .container {
+        padding: 3rem 2rem;
+    }
+
+    .faculty-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-container {
+        height: 450px;
+    }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 992px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .navbar {
+        padding: 0.8rem 1.2rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+        text-align: left;
+    }
+
+    .nav-button {
+        padding: 0.55rem 1.4rem;
+        font-size: 0.9rem;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+    }
+
+    .header-logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .faculty-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .image-container {
+        height: 380px;
+    }
+
+    .faculty-info {
+        min-height: 160px;
+    }
+
+    /* Loader */
+    .loader-card {
+        width: 280px;
+        min-height: 230px;
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Center cards & reduce width */
+    .faculty-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .faculty-card {
+        width: 75%;
+    }
+
+    /* Image container */
+    .image-container {
+        height: 320px;
+        overflow: hidden;
+        background: none;
+    }
+
+    /* Image behavior */
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;             /* fill fully */
+        object-position: top center;   /* KEEP FACE (top) */
+    }
+
+    /* Content spacing */
+    .faculty-info {
+        padding: 1.2rem;
+    }
+}
+
+
+
+
+/* ---------- Mobile Phones ---------- */
+@media (max-width: 576px) {
+    body {
+        padding-top: 65px;
+    }
+
+    .navbar {
+        padding: 0.7rem 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    .nav-button {
+        padding: 0.45rem 1.1rem;
+        font-size: 0.8rem;
+        border-radius: 18px;
+    }
+
+    .header {
+        padding: 2.2rem 1rem;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        font-size: 0.95rem;
+    }
+
+    .header-logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1rem;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    .faculty-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+
+    .image-container {
+        height: 320px;
+    }
+
+    .faculty-info {
+        padding: 1.2rem;
+        min-height: auto;
+    }
+
+    .faculty-name {
+        font-size: 1.25rem;
+    }
+
+    .faculty-role {
+        font-size: 0.8rem;
+    }
+
+    .detail-item {
+        font-size: 0.8rem;
+    }
+
+    /* Loader */
+    .loader-card {
+        width: 90%;
+        min-height: 210px;
+        padding: 2.2rem;
+    }
+
+    .loader-card img {
+        width: 60px;
+        height: 35px;
+    }
+
+    /* Scroll to top */
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">SHREE MEDHA DEGREE COLLEGE</div>
+        <button class="nav-button" onclick="goHome()">HOME</button>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>
+            <div class="header-logo">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgF66WZRSEQ3byXslSGTaPRTkVolxHnMuCAW5AlVd5lOzKS2nsRAU9Xu96sk9TihBO4ZDG1lBrVDmDgw4cE4ZIycU5q7j8IeY7A-03usaR5IGVB-BRWj5nSpl6sWZl57sSyd72jm51r2jFEz0eDlnwj4OG5VxA85roE4R8Uln_S58InCwS-RivMSBHXmiQ6" alt="College Logo">
+            </div>
+            Team UBUNTU
+        </h1>
+        <p>Department of Computer Applications</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="faculty-grid">
+            
+            <!-- Faculty Member 1 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjrosxS5J9VqcsIXTZYM1J8ml-NlCllNt7MQHrx9h7qLkSdSV8PhL98-Z7wCQhGCtYJazxQCPy59qXG8YSUcQt80T-uv3oOs_0W72KqcttgNiFPrtqPGdIaCB2r5lYSIp7FgD_JoNk-DrdxFJuHZdExnhlA0pGpVJSdVqO9sf_dcjyzd5OvoShKwjFIrdDl" alt="Mr. Manjunatha Balluli">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mr. Manjunatha Balluli</h2>
+                    <span class="faculty-role">Professor & HoD</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Position:</strong> Placement Officer, NSS Program Officer & ICT Co-Ordinator</div>
+                        <div class="detail-item"><strong>Qualification:</strong> M.C.A, M.Sc.(CS), M.B.A</div>
+                        <div class="detail-item"><strong>Experience:</strong> 19 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:jcmanju@outlook.com" class="email-link">jcmanju@outlook.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 2 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh8SgT_TtjEEjzrM17dVMCBqGP0QuLMZBdGqHkaCY_GM7Gu0KoS0Egc-R8YglmToEvVxDJ_R0qA5Qr_K_c1KZoE8kMtS6TvjJEqjSnN9yDoZa5UgFZwswF6vKFPwb6NYb3szxXwWFF8tjJDyNwzgXiWvZJIRQRENC7Hiq6cB_24817LpOfhe8EcVkwK05Gk" alt="Mrs. Vinutha H M">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mrs. Vinutha H M</h2>
+                    <span class="faculty-role">Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.Sc.(CS), B.Ed, KSET</div>
+                        <div class="detail-item"><strong>Experience:</strong> 14 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:vinutha.hm88@gail.com" class="email-link">vinutha.hm88@gail.com</a></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Faculty Member 4 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjhu0DCdZeSCiVhr0fru03079Akadt-AdWoxMBY03Vs3UzbhMbgW83Bez9bfPZjTauIJrSPjkzNZT_f1wIrK-Lf8RN8dYkEr0PbIXeRgtVl-aaDZ-RWAXnwn6dUZl4wq34SkjTpfyjNn8ZKveigOHJDbISZ81fUfGnCXtPZCNXGbOigKxKJM3hqt9M7P7bg" alt="Ms. Poonam Warnulkar">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Ms. Poonam Warnulkar</h2>
+                    <span class="faculty-role">Associate Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.Sc.(CS)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 10 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:poonamsmdc2016@gmail.com" class="email-link">poonamsmdc2016@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 3 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj4CJoqeTBjcB2bx7F-Zf57U2aVdFbHfU590yfV196J-ON-u_LiO_91RoO9smAbWjtxqW_ssQd7KooE4L6ebH0OjUzADiVpJpicferpwcY4LPfpHzt6In-UUEi2TTCAVmjbc_VHC5vkP1WSBRDVrx18XpQ_2U_DnU9GJ6EmZC97JBhKA4mFPsF14DnK_dE9" alt="Mr. Manjesh M">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mr. Manjesh M</h2>
+                    <span class="faculty-role">Associate Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.C.A</div>
+                        <div class="detail-item"><strong>Experience:</strong> 10 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:manjesh4u@gmail.com" class="email-link">manjesh4u@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Faculty Member 5 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj_meoGVjR_kO8VCH8tv-DMgTelioQmPHk3WvvnXGvYbJAf6uaauDc-aujhwB-KaFAEKhGbRxFUrOT-zLS1AM0FbjSAVeEnoGa6w0BvtIvfdTljBls1XAKBvdE22hSbReWUQfDxdMKoVPApeelcNKBihWFJ9gxjyyAdpj_4lHaIS8BiEqRWZ8_LnQBam7a7" alt="Mrs. Kavya K S">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mrs. Kavya K S</h2>
+                    <span class="faculty-role">Associate Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.Sc.(CS)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 9 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:kavyaks39@gmail.com" class="email-link">kavyaks39@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 6 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEheGeX-by4Iuqr38RZKu6cFRbzF9G1SJS6a5j8tuZ5CRiI3Fiwx1RRDsY_X1V3qRzgMn0Z9FtVQRcb0FDoO2sL83uZEF9Om4CY6fvPe42OHwPKgaezmvgJlv_u-gfHSziyJ-fAWT5hwKznWgTLHmJ58NYFL7fNYyNqsoCwsM-HYbDZbwFjy7rdgu3N_9amY=w291-h291" alt="Mrs. Aparna">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mrs. Aparna</h2>
+                    <span class="faculty-role">Associate Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.Sc.(Maths)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 9 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:aparnav.nischal@gmail.com" class="email-link">aparnav.nischal@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 7 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhZ-xzHIiXkzPHzClSz_VPrevsRbeOe8Y5lo_Drzt02zBGCHN04awzbVJVBFxJPbRFl8jfoE3l01CNeho4w8ulN5I26ii7l-uHmxve6VZNE3vqqA4GIJ2avVe3FoKqwGCawFEncLkh1fm0itSiakOEOdCTJCQq7hvuhfSSycgGEmB4EjCTf6LulfvRV_xRj" alt="Mrs. Anupama">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mrs. Anupama</h2>
+                    <span class="faculty-role">Associate Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.Tech (CS)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 11 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:anupama.mbly@gmail.com" class="email-link">anupama.mbly@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 8 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjqxzB18_tdIMd4kYA6q_SrS2gnBlzZN6adNcYPJezRFdFM6eImBR2sCWfG2az39DHapCQsVaV430Ep5vdvq_htfEl8ph898ueg1JIAtdBB3aI6ypERJPSNThvE2iaMgQQDhHhxfvOz_8EkcWstji0JTOGaj-H0v3cSH6FuYaJn3wcxl6FFa8GWMRSHGAX0" alt="Ms. P Sahana Prasad">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Ms. P Sahana Prasad</h2>
+                    <span class="faculty-role">Lecturer</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.Tech (CS)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 1 Year</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:sahana23535@gmail.com" class="email-link">sahana23535@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 9 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj6IG0a1O8mz8B8RD7AhU-ByYBHEOdpVv_jbjJaOMhGeCRZ_UYV06shvCPeOYvllCFGMxyRqcyHNRZDpFi5YVyvVSiwppIUA_Pn6qzWrqWF0mBdYsqEqZvkzNLfuetsabK2F9eOM20N7GF_39envba7ffXIuKuxwYZbNkRs8oenfq_NjsDm2yUxmcZ9pxJx=w215-h285" alt="Ms. Manisha">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Ms. Manisha</h2>
+                    <span class="faculty-role">Lecturer & Lab Educator</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.C.A (Pursuing)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 1 Year</div>
+			<div class="detail-item"><strong>Email:</strong> <a href="mailto:ejanthkermanisha@gmail.com" class="email-link">ejanthkermanisha@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 10 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiw7HFlfq21LdyLNZonz-MEJ13h7gJTJnIEQVl7RXsknrkBEAHAVUggDaWLoBdN_sLqSLjl3Wyju1hjnT0IoiwiqE8659JP3aBHRjN0YRhx5j5NWwkTzoh8nKcVUIKHUTl8U19DnclruT1ZRGoWVgFXv1J3MfUS1vt-p7HPqpCpnqhNR519LQfhQvu8mZ7L" alt="Mr. Shambu Prasad">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mr. Shambu Prasad</h2>
+                    <span class="faculty-role">Lab Educator</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> BE (CSE)</div>
+                        <div class="detail-item"><strong>Experience:</strong> 2 Years</div>
+                        <div class="detail-item"><strong>Email:</strong> <a href="mailto:shambu.sura@gmail.com" class="email-link">shambu.sura@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 11 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj3s04FadS9LFr0r8JtWB1mkgFBprmDAn36sWw0EDV4zueFsHAf6eobty_BVfJD_YGCb9K-ylq58I-jdpJzwzWqNPEkolM6VLcURQXks9TNvYb3sHMN3xaDea99tKMxHI50qPpB-n0tc_e38afqWsC4RI6Hc2p4SddH7u4sJc-_2N_WByEncH3aCb5idXFh" alt="Ms. Shravani">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Ms. Shravani</h2>
+                    <span class="faculty-role">Lab Educator</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.C.A (Pursuing)</div>
+			<div class="detail-item"><strong>Email:</strong> <a href="mailto:glshravani32@gmail.com" class="email-link">glshravani32@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 12 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjVbo9HmLvk0Z3TrSs-0zIwMsq_168tElN7bgrUS5wm5U6I8dhVL-UFddM6kQwy1Z4w0fK-1hZI-MVuF_N1ZZxD6mHhcqxKbnfmEKFSeuAUcTPYMRiDplntmYnrXs0H26hUyNGvj96E4710JEWKiaIwiLvphsaM2V8eupb7CeBD09U3KEYoATQhnTIT47Gp" alt="Mr. Manoj Kumar J M">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mr. Manoj Kumar J M</h2>
+                    <span class="faculty-role">Assistant Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.C.A</div>
+			<div class="detail-item"><strong>Email:</strong> <a href="mailto:manoj.jayam2611@gmail.com" class="email-link">manoj.jayam2611@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Member 13 -->
+            <div class="faculty-card">
+                <div class="image-container">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhYmVuhGtJWdYN4WZK46l48Kjj92SdH1PYKORALLJ4-UmhR8QyHV5moerRJxhs0hGdjcwR85rKdCXkoU8-xA23pArS0fiJBBOy-OmaKQvF9yYvVdlYG9JbPSTnsdKcrd-3tucl6_gkHQCRnJ-QvrnWrjkpwA2SmI-cXXYJPQYloXGIJpTksgtpohsvDZ4RJ" alt="Mr. R R Niteesh Gouda">
+                </div>
+                <div class="faculty-info">
+                    <h2 class="faculty-name">Mr. R R Niteesh Gouda</h2>
+                    <span class="faculty-role">Assistant Professor</span>
+                    <div class="faculty-details">
+                        <div class="detail-item"><strong>Qualification:</strong> M.C.A</div>
+			<div class="detail-item"><strong>Email:</strong> <a href="mailto:niteeshgoudarr@gmail.com" class="email-link">niteeshgoudarr@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="page-loader">
+    <div class="loader-card">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgF66WZRSEQ3byXslSGTaPRTkVolxHnMuCAW5AlVd5lOzKS2nsRAU9Xu96sk9TihBO4ZDG1lBrVDmDgw4cE4ZIycU5q7j8IeY7A-03usaR5IGVB-BRWj5nSpl6sWZl57sSyd72jm51r2jFEz0eDlnwj4OG5VxA85roE4R8Uln_S58InCwS-RivMSBHXmiQ6"
+             alt="Loading">
+        <p>Opening Home Page...</p>
+    </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" onclick="scrollToTop()">↑</div>
+
+    <script>
+        // Home button functionality
+
+function goHome() {
+    const loader = document.getElementById("page-loader");
+    loader.classList.add("active");
+
+    setTimeout(() => {
+        window.location.href = "https://bcasmdc.blogspot.com/";
+    }, 1000);
+}
+
+        // Scroll to top functionality
+        const scrollBtn = document.querySelector('.scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add stagger animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all faculty cards
+        document.querySelectorAll('.faculty-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        
+    </script>
+
+</body>
+</html>
